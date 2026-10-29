@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="chat-card">
+      <header class="topbar">
+        <div class="brand-icon">AI</div>
+        <div>
+          <h1>AI Assistant</h1>
+          <p>IT · Medical · Share Market</p>
+        </div>
+        <span class="online-dot" title="Ready"></span>
+      </header>
+
+      <div class="intro">
+        <span class="eyebrow">YOUR SMART HELPER</span>
+        <h2>How can I help you today?</h2>
+        <p>Ask a question and get a clear, helpful answer.</p>
+      </div>
+
+      <div class="controls">
+        <label for="category">Choose a topic</label>
+        <select id="category">
+          <option value="Auto">Auto detect</option>
+          <option value="IT">IT & Technology</option>
+          <option value="Medical">Medical / Health</option>
+          <option value="ShareMarket">Share Market</option>
+        </select>
+      </div>
+
+      <div id="messages" class="messages" aria-live="polite">
+        <div class="message assistant">
+          <div class="avatar">AI</div>
+          <div class="bubble">Hi! 👋 Ask me anything about IT, general health information, or the share market.</div>
+        </div>
+      </div>
+
+      <form id="chat-form" class="composer">
+        <textarea id="message" rows="1" placeholder="Type your question here..." required></textarea>
+        <button id="send" type="submit" aria-label="Send message">
+          <span>Send</span><span aria-hidden="true">➤</span>
+        </button>
+      </form>
+      <p class="footnote">AI can make mistakes. Verify important information.</p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("message");
+    const messages = document.getElementById("messages");
+    const send = document.getElementById("send");
+    const category = document.getElementById("category");
+
+    function addMessage(text, role) {
+      const row = document.createElement("div");
+      row.className = `message ${role}`;
+      const avatar = document.createElement("div");
+      avatar.className = "avatar";
+      avatar.textContent = role === "assistant" ? "AI" : "You";
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+      row.append(avatar, bubble);
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
+      return bubble;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+
+      addMessage(message, "user");
+      input.value = "";
+      input.style.height = "auto";
+      send.disabled = true;
+      send.querySelector("span").textContent = "Wait";
+      const loading = addMessage("Thinking…", "assistant");
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({message, category: category.value})
+        });
+        const data = await response.json();
+        loading.textContent = data.answer || data.error || "Something went wrong.";
+        if (data.category) {
+          const tag = document.createElement("small");
+          tag.className = "category-tag";
+          tag.textContent = `Topic: ${data.category}`;
+          loading.appendChild(document.createElement("br"));
+          loading.appendChild(tag);
+        }
+      } catch (error) {
+        loading.textContent = "Could not reach the server. Please check your connection and try again.";
+      } finally {
+        send.disabled = false;
+        send.querySelector("span").textContent = "Send";
+        input.focus();
+        messages.scrollTop = messages.scrollHeight;
+      }
+    });
+
+    input.addEventListener("input", () => {
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 140) + "px";
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+  </script>
+</body>
+</html>
