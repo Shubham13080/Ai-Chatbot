@@ -1,126 +1,198 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Assistant</title>
-  <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python AI Chatbot</title>
+
+    <!-- CSS is loaded from the public folder -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 </head>
+
 <body>
-  <main class="app-shell">
-    <section class="chat-card">
-      <header class="topbar">
-        <div class="brand-icon">AI</div>
-        <div>
-          <h1>AI Assistant</h1>
-          <p>IT · Medical · Share Market</p>
-        </div>
-        <span class="online-dot" title="Ready"></span>
-      </header>
+    <div class="app">
 
-      <div class="intro">
-        <span class="eyebrow">YOUR SMART HELPER</span>
-        <h2>How can I help you today?</h2>
-        <p>Ask a question and get a clear, helpful answer.</p>
-      </div>
+        <aside class="sidebar">
+            <h2>AI Assistant</h2>
+            <p>Your smart assistant</p>
 
-      <div class="controls">
-        <label for="category">Choose a topic</label>
-        <select id="category">
-          <option value="Auto">Auto detect</option>
-          <option value="IT">IT & Technology</option>
-          <option value="Medical">Medical / Health</option>
-          <option value="ShareMarket">Share Market</option>
-        </select>
-      </div>
+            <label for="category">Choose category</label>
 
-      <div id="messages" class="messages" aria-live="polite">
-        <div class="message assistant">
-          <div class="avatar">AI</div>
-          <div class="bubble">Hi! 👋 Ask me anything about IT, general health information, or the share market.</div>
-        </div>
-      </div>
+            <select id="category" required>
+                <option value="" selected disabled>
+                    -- Select a category --
+                </option>
 
-      <form id="chat-form" class="composer">
-        <textarea id="message" rows="1" placeholder="Type your question here..." required></textarea>
-        <button id="send" type="submit" aria-label="Send message">
-          <span>Send</span><span aria-hidden="true">➤</span>
-        </button>
-      </form>
-      <p class="footnote">AI can make mistakes. Verify important information.</p>
-    </section>
-  </main>
+                <option value="IT">
+                    💻 IT &amp; Programming
+                </option>
 
-  <script>
-    const form = document.getElementById("chat-form");
-    const input = document.getElementById("message");
-    const messages = document.getElementById("messages");
-    const send = document.getElementById("send");
-    const category = document.getElementById("category");
+                <option value="Medical">
+                    🩺 Medical &amp; Health
+                </option>
 
-    function addMessage(text, role) {
-      const row = document.createElement("div");
-      row.className = `message ${role}`;
-      const avatar = document.createElement("div");
-      avatar.className = "avatar";
-      avatar.textContent = role === "assistant" ? "AI" : "You";
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
-      bubble.textContent = text;
-      row.append(avatar, bubble);
-      messages.appendChild(row);
-      messages.scrollTop = messages.scrollHeight;
-      return bubble;
-    }
+                <option value="ShareMarket">
+                    📈 Share Market &amp; Investing
+                </option>
+            </select>
+        </aside>
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const message = input.value.trim();
-      if (!message) return;
+        <main class="chat-panel">
 
-      addMessage(message, "user");
-      input.value = "";
-      input.style.height = "auto";
-      send.disabled = true;
-      send.querySelector("span").textContent = "Wait";
-      const loading = addMessage("Thinking…", "assistant");
+            <header class="chat-header">
+                <div class="avatar">AI</div>
 
-      try {
-        const response = await fetch("/chat", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({message, category: category.value})
-        });
-        const data = await response.json();
-        loading.textContent = data.answer || data.error || "Something went wrong.";
-        if (data.category) {
-          const tag = document.createElement("small");
-          tag.className = "category-tag";
-          tag.textContent = `Topic: ${data.category}`;
-          loading.appendChild(document.createElement("br"));
-          loading.appendChild(tag);
+                <div>
+                    <h3>AI Chatbot</h3>
+                    <p>Your smart assistant</p>
+                </div>
+            </header>
+
+            <section
+                id="messages"
+                class="messages"
+                aria-live="polite"
+                aria-label="Chat messages"
+            >
+                <div class="message bot">
+                    Hello! Welcome. Select a category and ask me anything.
+                </div>
+            </section>
+
+            <form id="chat-form" class="chat-form">
+
+                <input
+                    id="message-input"
+                    type="text"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                    maxlength="5000"
+                    aria-label="Type your message"
+                    required
+                >
+
+                <button id="send-button" type="submit">
+                    Send ➤
+                </button>
+
+            </form>
+
+            <p class="footer-note">
+                AI can make mistakes. Verify important information.
+            </p>
+
+        </main>
+    </div>
+
+    <script>
+        const form = document.getElementById("chat-form");
+        const input = document.getElementById("message-input");
+        const messages = document.getElementById("messages");
+        const category = document.getElementById("category");
+        const sendButton = document.getElementById("send-button");
+
+        function addMessage(text, type) {
+            const div = document.createElement("div");
+
+            div.className = "message " + type;
+            div.textContent = text;
+
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+
+            return div;
         }
-      } catch (error) {
-        loading.textContent = "Could not reach the server. Please check your connection and try again.";
-      } finally {
-        send.disabled = false;
-        send.querySelector("span").textContent = "Send";
-        input.focus();
-        messages.scrollTop = messages.scrollHeight;
-      }
-    });
 
-    input.addEventListener("input", () => {
-      input.style.height = "auto";
-      input.style.height = Math.min(input.scrollHeight, 140) + "px";
-    });
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-    input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        form.requestSubmit();
-      }
-    });
-  </script>
+            const message = input.value.trim();
+            const selectedCategory = category.value;
+
+            if (!message) {
+                return;
+            }
+
+            // Greetings can be sent without selecting a category.
+            // Other questions require a category.
+            const normalizedMessage = message
+                .toLowerCase()
+                .replace(/[!.,?]+$/, "")
+                .trim();
+
+            const greetings = [
+                "hi", "hii", "hiii", "hello", "hey", "heyy",
+                "namaste", "namaskar",
+                "good morning", "good afternoon",
+                "good evening", "good night",
+                "how are you", "how are you doing",
+                "kaise ho", "kaise hain", "kya haal hai",
+                "thanks", "thank you", "thankyou",
+                "bye", "goodbye"
+            ];
+
+            if (!selectedCategory &&
+                !greetings.includes(normalizedMessage)) {
+
+                addMessage(
+                    "Please select a category before sending your question.",
+                    "bot error"
+                );
+
+                category.focus();
+                return;
+            }
+
+            addMessage(message, "user");
+
+            input.value = "";
+            sendButton.disabled = true;
+
+            const loading = addMessage("Thinking...", "bot");
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        category: selectedCategory
+                    })
+                });
+
+                const data = await response.json();
+
+                loading.textContent =
+                    data.reply || "No response received.";
+
+                if (!response.ok) {
+                    loading.classList.add("error");
+                }
+
+            } catch (error) {
+                loading.textContent =
+                    "Connection error. Check that the Python server is running.";
+
+                loading.classList.add("error");
+
+            } finally {
+                sendButton.disabled = false;
+                input.focus();
+                messages.scrollTop = messages.scrollHeight;
+            }
+        });
+    </script>
 </body>
 </html>
