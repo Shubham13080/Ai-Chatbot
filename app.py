@@ -49,6 +49,116 @@ CATEGORY_VALUES = {
 
 IT_KEYWORDS = [
 
+        # --------------------------------------------------
+    # SEO - SEARCH ENGINE OPTIMIZATION
+    # --------------------------------------------------
+
+    # General SEO
+    "seo", "search engine optimization",
+    "search engine ranking", "organic search",
+    "organic traffic", "google ranking",
+    "website ranking", "search visibility",
+    "seo strategy", "seo optimization",
+    "seo services", "seo expert", "seo specialist",
+    "seo consultant", "seo agency", "seo tutorial",
+    "seo course", "seo kaise kare",
+
+    # On Page SEO
+    "on page seo", "on-page seo",
+    "meta title", "seo title", "meta description",
+    "meta tags", "title tag", "heading tags",
+    "h1 tag", "h2 tag", "h3 tag",
+    "keyword placement", "keyword density",
+    "keyword optimization", "content optimization",
+    "image seo", "alt text", "image alt tag",
+    "internal linking", "url optimization",
+    "permalink", "canonical url",
+    "duplicate content", "thin content",
+    "seo friendly content", "seo friendly url",
+
+    # Off Page SEO
+    "off page seo", "off-page seo",
+    "backlinks", "backlink building",
+    "link building", "link earning",
+    "guest posting", "guest blogging",
+    "domain authority", "page authority",
+    "referring domains", "anchor text",
+    "dofollow backlinks", "nofollow backlinks",
+    "broken link building", "competitor backlinks",
+
+    # Technical SEO
+    "technical seo", "website crawling",
+    "website indexing", "google indexing",
+    "indexing issue", "crawl budget",
+    "robots.txt", "sitemap.xml",
+    "xml sitemap", "html sitemap",
+    "canonical tag", "301 redirect", "302 redirect",
+    "404 error seo", "structured data",
+    "schema markup", "rich snippets", "json ld",
+    "core web vitals", "lcp", "cls", "inp",
+    "page speed optimization", "website speed",
+    "mobile friendly website", "mobile first indexing",
+    "hreflang", "pagination seo",
+    "javascript seo", "crawl errors",
+
+    # Local SEO
+    "local seo", "google business profile",
+    "google my business", "gmb",
+    "local business seo", "local search ranking",
+    "google maps ranking", "local citations",
+    "business listing", "local keywords",
+    "near me seo", "location based seo",
+
+    # Ecommerce SEO
+    "ecommerce seo", "e-commerce seo",
+    "shopify seo", "woocommerce seo",
+    "wordpress seo", "product seo",
+    "product page optimization", "category page seo",
+    "product schema", "product description seo",
+    "online store seo", "collection page seo",
+
+    # Keyword Research
+    "keyword research", "keyword planner",
+    "google keyword planner", "long tail keywords",
+    "short tail keywords", "primary keyword",
+    "secondary keywords", "focus keyword",
+    "search volume", "keyword difficulty",
+    "keyword competition", "search intent",
+    "informational keywords", "commercial keywords",
+    "transactional keywords", "navigational keywords",
+    "competitor keyword research",
+
+    # SEO Tools
+    "google search console", "search console",
+    "google analytics", "google analytics 4", "ga4",
+    "google trends", "rank math", "rankmath",
+    "yoast seo", "all in one seo",
+    "semrush", "ahrefs", "moz",
+    "screaming frog", "ubersuggest",
+    "surfer seo", "seoquake",
+    "pagespeed insights", "google lighthouse",
+
+    # SEO Audit and Reporting
+    "seo audit", "website seo audit",
+    "seo report", "seo performance",
+    "organic traffic analysis", "ranking report",
+    "competitor analysis", "seo competitor analysis",
+    "website health check", "keyword tracking",
+    "rank tracking", "search performance",
+    "click through rate", "ctr optimization",
+    "average position",
+
+    # Advanced SEO
+    "international seo", "multilingual seo",
+    "programmatic seo", "enterprise seo",
+    "ai seo", "generative engine optimization",
+    "geo optimization", "voice search optimization",
+    "video seo", "youtube seo",
+    "image search optimization", "news seo",
+    "eeat", "topical authority",
+    "topic cluster", "content cluster",
+    "content gap analysis"
+
     # Programming languages
     "python", "java", "core java", "advanced java",
     "javascript", "typescript", "php", "c++", "c#",
@@ -197,7 +307,26 @@ IT_KEYWORDS = [
     "technology", "it support", "software installation",
     "configuration", "website error", "code error",
     "programming language", "framework", "library",
-    "open source", "version control"
+    "open source", "version control",
+
+    SEO and Search Engine Optimization,
+on-page SEO, off-page SEO, technical SEO,
+local SEO, ecommerce SEO, WordPress SEO,
+Shopify SEO, WooCommerce SEO, keyword research,
+keyword planning, search intent, backlinks,
+link building, domain authority, page authority,
+meta titles, meta descriptions, heading tags,
+image optimization, internal linking,
+Google Search Console, Google Analytics,
+Rank Math, Yoast SEO, SEMrush, Ahrefs,
+Google indexing, crawling, XML sitemap,
+robots.txt, canonical tags, schema markup,
+structured data, rich snippets, Core Web Vitals,
+website speed, mobile SEO, local ranking,
+Google Business Profile, competitor analysis,
+SEO audit, organic traffic, search rankings,
+content optimization, international SEO,
+YouTube SEO, AI SEO and Generative Engine Optimization.
 ]
 
 
@@ -669,6 +798,35 @@ You can answer questions about:
 15. Networking, Linux and operating systems.
 16. Data science and software testing.
 17. APIs, servers, hosting and deployment.
+18. Search Engine Optimization (SEO).
+19. On-page SEO and Off-page SEO.
+20. Technical SEO and Local SEO.
+21. WordPress SEO, Shopify SEO and WooCommerce SEO.
+22. Keyword research and competitor analysis.
+23. Backlink building and link optimization.
+24. Meta titles, meta descriptions and heading optimization.
+25. Google Search Console and Google Analytics.
+26. Rank Math, Yoast SEO, SEMrush and Ahrefs.
+27. Website indexing, crawling and XML sitemaps.
+28. Robots.txt, canonical URLs and redirects.
+29. Schema markup and structured data.
+30. Core Web Vitals and page speed optimization.
+31. E-commerce product SEO and category SEO.
+32. SEO audits, SEO reports and ranking improvements.
+33. International SEO, multilingual SEO and local SEO.
+34. Content strategy, search intent and organic traffic.
+
+For SEO-related questions:
+- Explain SEO concepts in simple Hindi, English or Hinglish.
+- Provide practical step-by-step SEO instructions.
+- Give SEO-friendly title and meta description examples.
+- Suggest relevant keywords when asked.
+- Explain how to fix technical SEO errors.
+- Provide WordPress, Rank Math, Yoast and Shopify SEO guidance.
+- Generate SEO-friendly content when requested.
+- Explain Google Search Console and Analytics reports.
+- Never guarantee Google rankings or specific traffic.
+- Never invent live keyword volumes or ranking positions.
 
 Understand Hindi, English and Hinglish.
 
