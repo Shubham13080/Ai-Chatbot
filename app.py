@@ -157,7 +157,7 @@ IT_KEYWORDS = [
     "image search optimization", "news seo",
     "eeat", "topical authority",
     "topic cluster", "content cluster",
-    "content gap analysis"
+    "content gap analysis",
 
     # Programming languages
     "python", "java", "core java", "advanced java",
@@ -301,7 +301,7 @@ IT_KEYWORDS = [
     "integration testing", "api testing",
     "quality assurance", "qa testing",
 
-    # General IT
+        # General IT
     "api", "server", "hosting", "debugging",
     "technical support", "troubleshooting",
     "technology", "it support", "software installation",
@@ -309,24 +309,26 @@ IT_KEYWORDS = [
     "programming language", "framework", "library",
     "open source", "version control",
 
-    SEO and Search Engine Optimization,
-on-page SEO, off-page SEO, technical SEO,
-local SEO, ecommerce SEO, WordPress SEO,
-Shopify SEO, WooCommerce SEO, keyword research,
-keyword planning, search intent, backlinks,
-link building, domain authority, page authority,
-meta titles, meta descriptions, heading tags,
-image optimization, internal linking,
-Google Search Console, Google Analytics,
-Rank Math, Yoast SEO, SEMrush, Ahrefs,
-Google indexing, crawling, XML sitemap,
-robots.txt, canonical tags, schema markup,
-structured data, rich snippets, Core Web Vitals,
-website speed, mobile SEO, local ranking,
-Google Business Profile, competitor analysis,
-SEO audit, organic traffic, search rankings,
-content optimization, international SEO,
-YouTube SEO, AI SEO and Generative Engine Optimization.
+    # SEO Keywords
+    "seo and search engine optimization",
+    "on-page seo", "off-page seo", "technical seo",
+    "local seo", "ecommerce seo", "wordpress seo",
+    "shopify seo", "woocommerce seo", "keyword research",
+    "keyword planning", "search intent", "backlinks",
+    "link building", "domain authority", "page authority",
+    "meta titles", "meta descriptions", "heading tags",
+    "image optimization", "internal linking",
+    "google search console", "google analytics",
+    "rank math", "yoast seo", "semrush", "ahrefs",
+    "google indexing", "crawling", "xml sitemap",
+    "robots.txt", "canonical tags", "schema markup",
+    "structured data", "rich snippets", "core web vitals",
+    "website speed", "mobile seo", "local ranking",
+    "google business profile", "competitor analysis",
+    "seo audit", "organic traffic", "search rankings",
+    "content optimization", "international seo",
+    "youtube seo", "ai seo",
+    "generative engine optimization"
 ]
 
 
